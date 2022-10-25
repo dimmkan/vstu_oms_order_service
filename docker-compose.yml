@@ -1,0 +1,8 @@
+version: '3'
+services:
+  order_service:
+    image: vstu_oms_order_service:latest
+    container_name: vstu_oms_order_service
+    restart: always
+    env_file:
+      - ./.env
