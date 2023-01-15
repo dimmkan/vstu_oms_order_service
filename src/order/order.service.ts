@@ -25,7 +25,7 @@ export class OrderService {
       filter: {
         user_id,
       },
-      sort: ['date_created'],
+      sort: ['-date_created'],
     });
   }
 
