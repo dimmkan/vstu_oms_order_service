@@ -15,6 +15,6 @@ export const getRMQConfig = (): IRMQServiceAsyncOptions => ({
     ],
     queueName: process.env.AMQP_QUEUE,
     prefetchCount: 32,
-    serviceName: 'auth-service',
+    serviceName: 'order-service',
   }),
 });
