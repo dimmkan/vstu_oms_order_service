@@ -7,7 +7,11 @@ import { getRMQConfig } from './configs/rmq.config';
 import { OrderModule } from './order/order.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), RMQModule.forRootAsync(getRMQConfig()), OrderModule],
+  imports: [
+    ConfigModule.forRoot(),
+    RMQModule.forRootAsync(getRMQConfig()),
+    OrderModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
