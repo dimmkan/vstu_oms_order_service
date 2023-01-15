@@ -27,20 +27,34 @@ export class OrderService {
       },
     });
   }
-  deleteOrder(order_id: number): Promise<DeleteOrder.Response> {
-    throw new Error('Method not implemented.');
+
+  async deleteOrder(order_id: number): Promise<DeleteOrder.Response> {
+    const order_collection = this.directus.items('orders');
+    await order_collection.deleteOne(order_id);
+    return { success: true };
   }
-  createOrder(dto: CreateOrder.Request): Promise<CreateOrder.Response> {
-    throw new Error('Method not implemented.');
+
+  async createOrder(dto: CreateOrder.Request): Promise<CreateOrder.Response> {
+    const order_collection = this.directus.items('orders');
+    await order_collection.createOne(dto);
+    return { success: true };
   }
-  changeOrderStatus(
+
+  async changeOrderStatus(
     dto: ChangeOrderStatus.Request,
   ): Promise<ChangeOrderStatus.Response> {
-    throw new Error('Method not implemented.');
+    const order_collection = this.directus.items('orders');
+    await order_collection.updateOne(dto.order_id, { status: dto.status });
+    return { success: true };
   }
-  changeOrderDescription(
+
+  async changeOrderDescription(
     dto: ChangeOrderDescription.Request,
   ): Promise<ChangeOrderDescription.Response> {
-    throw new Error('Method not implemented.');
+    const order_collection = this.directus.items('orders');
+    await order_collection.updateOne(dto.order_id, {
+      description: dto.description,
+    });
+    return { success: true };
   }
 }

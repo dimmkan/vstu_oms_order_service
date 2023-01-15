@@ -3,7 +3,6 @@ export namespace ChangeOrderDescription {
 
   export class Request {
     order_id: number;
-
     description: string;
   }
 
