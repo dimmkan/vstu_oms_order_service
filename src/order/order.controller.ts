@@ -1,5 +1,5 @@
 import { Body, Controller } from '@nestjs/common';
-import { RMQRoute } from 'nestjs-rmq';
+import { RMQRoute, RMQValidate } from 'nestjs-rmq';
 import {
   ChangeOrderDescription,
   ChangeOrderStatus,
@@ -14,6 +14,7 @@ export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
   @RMQRoute(GetUserOrders.topic)
+  @RMQValidate()
   async getUserOrders(
     @Body() { user_id }: GetUserOrders.Request,
   ): Promise<GetUserOrders.Response> {
@@ -21,6 +22,7 @@ export class OrderController {
   }
 
   @RMQRoute(ChangeOrderDescription.topic)
+  @RMQValidate()
   async changeOrderDescription(
     @Body() dto: ChangeOrderDescription.Request,
   ): Promise<ChangeOrderDescription.Response> {
@@ -28,6 +30,7 @@ export class OrderController {
   }
 
   @RMQRoute(ChangeOrderStatus.topic)
+  @RMQValidate()
   async changeOrderStatus(
     @Body() dto: ChangeOrderStatus.Request,
   ): Promise<ChangeOrderStatus.Response> {
@@ -35,6 +38,7 @@ export class OrderController {
   }
 
   @RMQRoute(CreateOrder.topic)
+  @RMQValidate()
   async createOrder(
     @Body() dto: CreateOrder.Request,
   ): Promise<CreateOrder.Response> {
@@ -42,6 +46,7 @@ export class OrderController {
   }
 
   @RMQRoute(DeleteOrder.topic)
+  @RMQValidate()
   async deleteOrder(
     @Body() { order_id }: DeleteOrder.Request,
   ): Promise<DeleteOrder.Response> {
